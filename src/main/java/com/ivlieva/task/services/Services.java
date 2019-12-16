@@ -1,6 +1,8 @@
 package com.ivlieva.task.services;
 
 import com.ivlieva.task.dao.DAO;
+import com.ivlieva.task.ui.myQuery.Q1;
+import com.ivlieva.task.ui.myQuery.Q2;
 
 import java.util.List;
 
@@ -31,4 +33,8 @@ public class Services<T> {
     public void update(T object) {
         dao.update(object);
     }
+
+    public List<Q1> q1(){return dao.query1();}
+
+    public List<Q2> q2(){return dao.query2();}
 }

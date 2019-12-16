@@ -46,30 +46,4 @@ public class SellerDAOImpl extends DAO<Seller> {
         }
         return patients;
     }
-
-    public void query1() {
-        Session session = null;
-        try {
-            session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.createSQLQuery("SELECT seller.name, SUM(product.price) AS sum_price" +
-                    " FROM seller, product WHERE seller.id = product.id_seller " +
-                    "GROUP BY seller.name ORDER BY sum_price\n")
-                    .addEntity(Product.class)
-                    .addEntity(Seller.class)
-                    .list()
-                    .forEach(System.out::println);;
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("query1 error: " + e);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-    }
-
-    public void query2() {
-
-    }
 }
